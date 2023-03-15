@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;}
+
+#producto{
+    margin: 20px;
+    padding: 10px;
+    max-width: 80%;
+}
+
+.container{
+    display: flex;
+}
+.especificaciones{
+    padding-top: 10px;
+    padding-left: 20%;
+}
+
+.title{
+    padding-top: 10px;
+}
+
+.precio{
+    padding-top: 10px;
+}
+
+.descripcion{
+    padding-top: 10px;
+}
+
+.descripcion p{
+    padding-bottom: 10px;
+}
+
+.caracteristicas li{
+    padding-top: 5px;
+}
+
+.link{
+    padding-top: 10px;
+}
