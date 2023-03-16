@@ -9,17 +9,62 @@
     scroll-behavior: smooth;
     list-style: none;
     text-decoration: none;
+    max-width: auto;
+    max-height: auto;
 }
 
+/* Header */
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 1.2rem;
+    height: 100px;
+    background-color: rgb(247, 247, 4);
+}
+
+.market-icon{
+    /* padding-top: 10px; */
+    font-size: 24px;
+}
+
+form {
+    display: flex;
+    align-items: center;
+}
+
+input[type="text"] {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    font-size: 16px;
+    padding: 6px;
+    margin-right: 10px;
+    box-shadow: 0 1px 4px hsl(0 4% 15% / 10%);
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Shop */
 .shop-content{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, auto));
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
     gap: 1.5rem;
     max-width: 80%;
+    margin: 20px auto;
 }
 
 .product-box{
     position: relative;
+    width: 60vh;
+    height: 60vh;
 }
 
 .product-box:hover{
