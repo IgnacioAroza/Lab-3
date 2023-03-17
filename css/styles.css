@@ -52,6 +52,10 @@ button[type="submit"] {
 }
 
 /* Shop */
+a{
+    color: black;
+}
+
 .shop-content{
     display: grid;
     grid-template-columns: auto auto auto;
@@ -63,8 +67,8 @@ button[type="submit"] {
 
 .product-box{
     position: relative;
-    width: 60vh;
-    height: 60vh;
+    width: 50vh;
+    height: 50vh;
 }
 
 .product-box:hover{
@@ -83,7 +87,7 @@ button[type="submit"] {
     font-size: 1.1rem;
     font-weight: 600;
     text-transform: uppercase;
-    margin-bottom: 0.5rem;    
+    margin-bottom: 0.5rem;   
 }
 
 .price{
