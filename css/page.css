@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body{
@@ -77,13 +78,35 @@ body{
     background-color: #0062cc;
 }
 
-#coments{
+#description{
     width: 1000px;
-    height: 500px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 50px;
+    background-color: white;
+    padding-top: 10px;
+    padding-left: 40px;
+    /* border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; */
+}
+
+.title-description{
+    font-family:'Poppins', sans-serif;
+    padding: 10px 0;
+}
+
+.text-description{
+    width: 70%;
+}
+
+#coments{
+    width: 1000px;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 40px;
     background-color: white;
     padding-top: 10px;
     border-bottom-left-radius: 5px;
@@ -94,7 +117,6 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 100px;
 }
 
 .comentarios p{
