@@ -40,6 +40,7 @@ function ready(){
     }
     // Buy Button Action
     document.getElementsByClassName('btn-buy')[0].addEventListener('click', buyButtonClicked);
+    document.getElementsByClassName('btn-buy2')[0].addEventListener('click', buyButtonClicked);
 };
 
 // buy button
