@@ -33,13 +33,14 @@ function ready(){
         input.addEventListener('change', quantityChanged);
     }
     // Add to Cart
-    var addCart = document.getElementsByClassName('add-cart');
+    var addCart = document.getElementsByClassName('btn-cart');
     for(var i = 0; i < addCart.length; i++){
         var button = addCart[i];
         button.addEventListener('click', addCartClicked);
     }
     // Buy Button Action
     document.getElementsByClassName('btn-buy')[0].addEventListener('click', buyButtonClicked);
+    document.getElementsByClassName('btn-buy2')[0].addEventListener('click', buyButtonClicked);
 };
 
 // buy button
@@ -72,8 +73,8 @@ function quantityChanged(event){
 function addCartClicked(event){
     var button = event.target;
     var shopProdcuts = button.parentElement;
-    var title = shopProdcuts.getElementsByClassName('product-title')[0].innerText;
-    var price = shopProdcuts.getElementsByClassName('price')[0].innerText;
+    var title = shopProdcuts.getElementsByClassName('title')[0].innerText;
+    var price = shopProdcuts.getElementsByClassName('precio')[0].innerText;
     var productImg = shopProdcuts.getElementsByClassName('product-img')[0].src;
 
     addProductToCart(title, price, productImg);
@@ -128,39 +129,25 @@ function updateTotal(){
 };
 
 
-// MOSTRAR LOS PRODUCTOS DESDE UN ARRAY
+// AGREGAR COMENTARIOS
+function agregarComentario(evento) {
+    // Evito que recargue la pagina
+    evento.preventDefault();
 
-let productos = [
-    {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
-    {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
-    {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
-    {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
-    {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
-    {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
-    {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
-    {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
-];
+    // Obtengo los valores ingresados
+    let textoComentario = document.getElementById('texto-comentario').value;
+    let puntaje = document.getElementById('puntaje-feedback').value;
 
-function mostrarProductos() {
-    let productosContainer = document.getElementById('shop-content');
+    // Agrego el feedback a la pagina
+    let texto = document.createTextNode(textoComentario + ' - ' + puntaje + '/5');
+    let parrafo = document.createElement('p');
+    parrafo.appendChild(texto);
 
-    for (let producto of productos) {
-        let productoDiv = document.createElement('div');
-        let link = document.createElement('a');
-        link.setAttribute('href', '../page.html');
-        let imagenProducto = document.createElement('img');
-        imagenProducto.setAttribute('src', producto.srcImagen);
-        imagenProducto.setAttribute('alt', producto.nombre);
+    document.getElementById('coments').appendChild(parrafo);
 
-        productoDiv.innerHTML = producto.nombre + ' - $' + producto.precio;
-        link.appendChild(imagenProducto);
-        productoDiv.appendChild(link);
-        
-        productoDiv.setAttribute('class', 'product-box');
-        link.setAttribute('style', 'text-decoration: none');
-
-        productosContainer.appendChild(productoDiv);
-    }
+    // Reinicio los valores del input
+    document.getElementById('texto-comentario').value = '';
+    document.getElementById('puntaje-feedback').value = '1';
 }
 
-mostrarProductos();
+document.getElementById('boton-enviar-comentario').addEventListener('click', agregarComentario);
