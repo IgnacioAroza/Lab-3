@@ -69,28 +69,22 @@
             <p class="text-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi vitae facere eum, fugiat culpa facilis voluptatem quas pariatur, distinctio natus excepturi? Corporis dolorem fugiat inventore eum odit cupiditate sit eaque.</p>
         </section>
         <section id="coments">
-                <div class="comentarios">
-                    <div class="comentario">
-                        <p class="name-user">Juan Perez</p>
-                        <p class="texto">Muy buen producto calidad-precio</p>
-                    </div>
-                    <div class="comentario">
-                        <p class="name-user">Nicolas Fernandez</p>
-                        <p class="texto">Exelente producto</p>
-                    </div>
-                    <div class="comentario">
-                        <p class="name-user">Lautaro Gimenez</p>
-                        <p class="texto">Excelente producto para el uso de oficina</p>
-                    </div>
-                    <div class="comentario">
-                        <p class="name-user">Matias Bueno</p>
-                        <p class="texto">Muy lindo el producto lo recomiendo</p>
-                    </div>
-                    <div class="comentario">
-                        <p class="name-user">Julieta Esposito</p>
-                        <p class="texto">Me sirve mucho, muy reconmedable</p>
-                    </div>
-                </div>
+            <h2>¡Deja tu comentario!</h2>
+            <form>
+                <label>Comentario: <textarea id="texto-comentario" name="comentario" cols=""></textarea></label>
+    
+                <label>
+                    Calificación:
+                    <select id="puntaje-feedback">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </label>
+    
+                <input id="boton-enviar-comentario" type="submit" value="Enviar">
         </section>
     </section>
 
