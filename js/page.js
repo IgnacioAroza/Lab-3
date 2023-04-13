@@ -132,6 +132,8 @@ function updateTotal(){
 // AGREGAR COMENTARIOS
 function agregarComentario(evento) {
     // Evito que recargue la pagina
+}
+function agregarComentario(evento) {
     evento.preventDefault();
 
     // Obtengo los valores ingresados
@@ -146,6 +148,11 @@ function agregarComentario(evento) {
     document.getElementById('coments').appendChild(parrafo);
 
     // Reinicio los valores del input
+
+    document.getElementById('listado-comentarios').appendChild(parrafo);
+
+    // Reinicio los valores de los input
+
     document.getElementById('texto-comentario').value = '';
     document.getElementById('puntaje-feedback').value = '1';
 }
