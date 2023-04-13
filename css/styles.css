@@ -206,7 +206,7 @@ button[type="submit"] {
 }
 
 /* Shop Content */
-#shop-content{
+.shop-content{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, auto));
     gap: 1.5rem;
@@ -222,7 +222,7 @@ button[type="submit"] {
     transition: 0.4s;
 }
 
-img{
+.product-img{
     width: 100%;
     height: auto;
     margin-bottom: 0.5rem;
@@ -239,7 +239,7 @@ img{
     font-weight: 500;
 }
 
-/* .add-cart{
+.add-cart{
     position: absolute;
     bottom: 0;
     right: 0;
@@ -251,7 +251,7 @@ img{
 
 .add-cart:hover{
     background: hsl(249, 32%, 17%);
-} */
+}
 
 /* Breakpoints / Making Responsive */
 @media (max-width: 1080px){
