@@ -220,3 +220,31 @@ function crearElemento(tag, className){
     }
     return elemento;
 }
+
+mostrarProductos();
+
+// Barra de busqueda
+const form = document.querySelector('form');
+const input = document.querySelector('#buscardor-input');
+const list = document.querySelector('#shop-content');
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const buscadorTerminos = input.value;
+
+    // Obtener todos los elemetos
+    const elementos = list.querySelectorAll('div');
+
+    // Ocultar todos los elementos
+    elementos.forEach(function(elemento) {
+        elemento.style.display = 'none';
+    });
+
+    // Mostrar solo los elemnetos que coinciden con el termino buscado
+    elementos.forEach(function(elemento) {
+        const texto = elemento.textContent.toLocaleLowerCase();
+        if(texto.includes(buscadorTerminos.toLocaleLowerCase())){
+            elemento.style.display = 'block';
+        }
+    });
+});
