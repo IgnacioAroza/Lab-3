@@ -2,6 +2,20 @@ let cartIcon = document.querySelector('#cart-icon');
 let cart = document.querySelector('.cart');
 let closeCart = document.querySelector('#close-cart');
 
+
+// Cantidad de productos
+async function cargalUrl(url){
+    let respuesta = await fetch(url);
+    return respuesta.json();
+}
+async function cargarJson2(){
+    let json = await cargalUrl('https://my-json-server.typicode.com/agustinruatta/fake_json_server_db/statistics');
+    const cantProductos = document.getElementById('cant');
+    cantProductos.innerHTML = json.amount_of_products;
+    console.log(json)
+}
+cargarJson2();
+
 // Open cart
 cartIcon.onclick = () =>{
     cart.classList.add("active");
@@ -21,7 +35,7 @@ if(document.readyState == 'loading'){
 function ready(){
     //Remove Items From Cart
     var removeCartButtons = document.getElementsByClassName('cart-remove');
-    console.log(removeCartButtons);
+    // console.log(removeCartButtons);
     for(var i = 0; i < removeCartButtons.length; i++){
         var button = removeCartButtons[i];
         button.addEventListener('click', removeCartItem);
@@ -130,37 +144,79 @@ function updateTotal(){
 
 // MOSTRAR LOS PRODUCTOS DESDE UN ARRAY
 
-let productos = [
-    {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
-    {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
-    {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
-    {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
-    {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
-    {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
-    {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
-    {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
-];
+// let productos = [
+//     {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
+//     {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
+//     {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
+//     {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
+//     {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
+//     {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
+//     {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
+//     {srcImagen: '../img/notebook.jpg', nombre: 'Notebook Lenovo', precio: '25'},
+// ];
 
-function mostrarProductos() {
-    let productosContainer = document.getElementById('shop-content');
+// function mostrarProductos() {
+//     let productosContainer = document.getElementById('shop-content');
 
-    for (let producto of productos) {
-        let productoDiv = document.createElement('div');
-        let link = document.createElement('a');
-        link.setAttribute('href', '../page.html');
-        let imagenProducto = document.createElement('img');
-        imagenProducto.setAttribute('src', producto.srcImagen);
-        imagenProducto.setAttribute('alt', producto.nombre);
+//     for (let producto of productos) {
+//         let productoDiv = document.createElement('div');
+//         let link = document.createElement('a');
+//         link.setAttribute('href', '../page.html');
+//         let imagenProducto = document.createElement('img');
+//         imagenProducto.setAttribute('src', producto.srcImagen);
+//         imagenProducto.setAttribute('alt', producto.nombre);
 
-        productoDiv.innerHTML = producto.nombre + ' - $' + producto.precio;
-        link.appendChild(imagenProducto);
-        productoDiv.appendChild(link);
+//         productoDiv.innerHTML = producto.nombre + ' - $' + producto.precio;
+//         link.appendChild(imagenProducto);
+//         productoDiv.appendChild(link);
         
-        productoDiv.setAttribute('class', 'product-box');
-        link.setAttribute('style', 'text-decoration: none');
+//         productoDiv.setAttribute('class', 'product-box');
+//         link.setAttribute('style', 'text-decoration: none');
 
-        productosContainer.appendChild(productoDiv);
+//         productosContainer.appendChild(productoDiv);
+//     }
+// }
+
+// mostrarProductos();
+
+// MOSTRAR PRODUCTOS DESDE API
+let productosContainer = document.getElementById('shop-content');
+let productoDiv = document.createElement('div');
+productoDiv.classList.add('product-box');
+let link = document.createElement('a');
+let imgProducto = document.createElement('img');
+let title = document.createElement('p');
+
+let jsonProductos = fetch('https://my-json-server.typicode.com/agustinruatta/fake_json_server_db/products')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        data.forEach(function(item) {
+            let productoDiv = crearElemento('div', 'product-box');
+            let link = crearElemento('a', 'link');
+            let imgProducto = crearElemento('img', 'img');
+            let title = crearElemento('p', 'product-title');
+            let price = crearElemento('p', 'price')
+            console.log(item.notebooksTypes[0].price);
+            imgProducto.src = item.image_url;
+            title.innerHTML = item.title;
+            price.innerHTML = '$' + item.notebooksTypes[0].price;
+
+            link.setAttribute('href', '../page.html');
+            link.setAttribute('style', 'text-decoration: none');
+            link.appendChild(imgProducto);
+            link.appendChild(title);
+            link.appendChild(price);
+            productoDiv.appendChild(link);
+            productosContainer.appendChild(productoDiv);
+        })
+})
+.catch(error => error);
+
+function crearElemento(tag, className){
+    let elemento = document.createElement(tag);
+    if(className){
+        elemento.classList.add(className);
     }
+    return elemento;
 }
-
-mostrarProductos();

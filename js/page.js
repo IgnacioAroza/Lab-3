@@ -21,7 +21,7 @@ if(document.readyState == 'loading'){
 function ready(){
     //Remove Items From Cart
     var removeCartButtons = document.getElementsByClassName('cart-remove');
-    console.log(removeCartButtons);
+    // console.log(removeCartButtons);
     for(var i = 0; i < removeCartButtons.length; i++){
         var button = removeCartButtons[i];
         button.addEventListener('click', removeCartItem);
@@ -158,3 +158,143 @@ function agregarComentario(evento) {
 }
 
 document.getElementById('boton-enviar-comentario').addEventListener('click', agregarComentario);
+
+// Mostrar todo desde la API
+async function cargalUrl(url){
+    let respuesta = await fetch(url);
+    return respuesta.json();
+}
+async function cargarJson2(){
+    let json = await cargalUrl('https://my-json-server.typicode.com/agustinruatta/fake_json_server_db/products/1');
+    // console.log(json);
+
+    // Imagen
+    const productImg = document.getElementById('img');
+    let img = document.createElement('img');
+    img.classList.add('product-img');
+    img.src = json.image_url;
+    productImg.appendChild(img);
+
+    // Titulo
+    const title = document.querySelector('.title');
+    title.innerHTML = json.title;
+
+    // Precio
+    const price = document.getElementById('price');
+    // Titulo del precio
+    let precio = document.createElement('h3');
+    precio.classList.add('precio');
+    // Select
+    let ramSelect = document.createElement('select');
+    ramSelect.classList.add('ramSelect');
+    let opcion = document.createElement('option');
+    opcion.value = ' ';
+    opcion.textContent = 'Seleccione una opcion';
+    ramSelect.appendChild(opcion);
+    let opcion8gb = document.createElement('option');
+    opcion8gb.value = '8';
+    opcion8gb.textContent = '8GB Ram';
+    ramSelect.appendChild(opcion8gb);
+    let opcion16gb = document.createElement('option');
+    opcion16gb.value = '16';
+    opcion16gb.textContent = '16GB Ram';
+    ramSelect.appendChild(opcion16gb);
+    price.appendChild(ramSelect);
+    
+    // Seleccionar precio
+    ramSelect.addEventListener('change', () => {
+        if(ramSelect.value === '8'){
+            precio.textContent = '$' + json.notebooksTypes[0].price;
+            // console.log(precio.textContent);
+        }else if(ramSelect.value === '16'){
+            precio.textContent = '$' + json.notebooksTypes[1].price;
+            // console.log(precio.textContent);
+        }
+        price.appendChild(precio);
+    });
+    
+    // URL fabricante
+    let fabricanteUrl = document.createElement('a');
+    fabricanteUrl.classList.add('link');
+    fabricanteUrl.href = json.factory_url;
+    fabricanteUrl.textContent = "Sitio del fabricante";
+    const fabricante = document.getElementById('fabricante');
+    fabricante.appendChild(fabricanteUrl);
+
+    // Descripcion
+    const descripcion = document.getElementById('descrip');
+    descripcion.innerText = json.description;
+}
+cargarJson2();
+
+// const productImg = document.getElementById('img');
+// let jsonProducto = fetch('https://my-json-server.typicode.com/agustinruatta/fake_json_server_db/products')
+// .then(response => response.json())
+// .then(data =>{
+//     data.forEach(function(item) {
+//     // Imagen
+//     let img = crearElemento('img', 'product-img');
+//     // img.classList.add('product-img');
+//     img.src = item.image_url;
+//     productImg.appendChild(img);
+
+//     // Titulo
+//     const title = document.querySelector('.title');
+//     title.innerHTML = item.title;
+
+//     // Precio
+//     const price = document.getElementById('price');
+//     // Titulo del precio
+//     let precio = crearElemento('h3', 'precio');
+//     // precio.classList.add('precio');
+//     // Select
+//     let ramSelect = crearElemento('select', 'ramSelect');
+//     // ramSelect.classList.add('ramSelect');
+//     let opcion = crearElemento('option', 'opcion');
+//     opcion.value = ' ';
+//     opcion.textContent = 'Seleccione una opcion';
+//     ramSelect.appendChild(opcion);
+//     let opcion8gb = document.createElement('option');
+//     opcion8gb.value = '8';
+//     opcion8gb.textContent = '8GB Ram';
+//     ramSelect.appendChild(opcion8gb);
+//     let opcion16gb = document.createElement('option');
+//     opcion16gb.value = '16';
+//     opcion16gb.textContent = '16GB Ram';
+//     ramSelect.appendChild(opcion16gb);
+//     price.appendChild(ramSelect);
+    
+//     // Seleccionar precio
+//     ramSelect.addEventListener('change', () => {
+//         if(ramSelect.value === '8'){
+//             precio.textContent = '$' + item.notebooksTypes[0].price;
+//             // console.log(precio.textContent);
+//         }else if(ramSelect.value === '16'){
+//             precio.textContent = '$' + item.notebooksTypes[1].price;
+//             // console.log(precio.textContent);
+//         }
+//         price.appendChild(precio);
+//     });
+    
+//     // URL fabricante
+//     let fabricanteUrl = crearElemento('a', 'link');
+//     // fabricanteUrl.classList.add('link');
+//     fabricanteUrl.href = item.factory_url;
+//     fabricanteUrl.textContent = "Sitio del fabricante";
+//     const fabricante = document.getElementById('fabricante');
+//     fabricante.appendChild(fabricanteUrl);
+
+//     // Descripcion
+//     const descripcion = document.getElementById('descrip');
+//     descripcion.innerText = item.description;
+//     });
+// })
+// .catch(error => error);
+
+function crearElemento(tag, className){
+    let elemento = document.createElement(tag);
+    if(className){
+        elemento.classList.add(className);
+    }
+    return elemento;
+}

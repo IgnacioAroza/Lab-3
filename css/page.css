@@ -11,6 +11,7 @@
     --main-color: #fd4646;
     --text-color: #171427;
     --bg-color: #fff;
+    --bg-header: #FFF159;
 }
 
 body{
@@ -23,7 +24,7 @@ header{
     top: 0;
     left: 0;
     width: 100%;
-    background: var(--bg-color);
+    background: var(--bg-header);
     box-shadow: 0 1px 4px hsl(0 4% 15% / 10%);
     z-index: 100;
 }
@@ -202,6 +203,13 @@ button[type="submit"] {
     border-top-right-radius: 5px;
     box-shadow: 0 1px 4px hsl(0 4% 15% / 10%);
 }
+
+.product-img{
+    height: 400px;
+    width: 500px;
+    margin: 3rem 0 0 3rem;
+}
+
 .especificaciones{
     padding-top: 10px;
     padding-left: 10%;
@@ -209,17 +217,22 @@ button[type="submit"] {
 
 .link{
     padding-top: 10px;
+    color: #000;
 }
 
 .title{
-    padding-top: 10px;
+    margin-top: 10px;
 }
 
 .precio{
-    padding-top: 10px;
+    margin-top: 10px;
 }
 
-.descripcion{
+.ramSelect{
+    margin-top: 10px;
+}
+
+/* .descripcion{
     padding-top: 10px;
 }
 
@@ -229,7 +242,7 @@ button[type="submit"] {
 
 .caracteristicas li{
     padding-top: 5px;
-}
+} */
 
 .link{
     text-decoration: none;
